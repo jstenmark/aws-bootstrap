@@ -17,5 +17,6 @@ artifacts:
     - stop-service.sh
     - server.js
     - package.json
-    - appspec.yml
     - 'node_modules/**/*'
+    - source: infra/appspec.yml
+      destination: appspec.yml

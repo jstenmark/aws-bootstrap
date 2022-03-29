@@ -4,7 +4,7 @@ source aws_credentials.sh
 GH_OWNER=$(cat ~/.github/aws-bootstrap-owner)
 GH_REPO=$(cat ~/.github/aws-bootstrap-repo)
 GH_ACCESS_TOKEN=$(cat ~/.github/aws-bootstrap-access-token)
-GH_BRANCH=master
+GH_BRANCH=main
 
 REGION=eu-west-1 
 CLI_PROFILE=awsbootstrap

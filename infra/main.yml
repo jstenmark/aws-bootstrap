@@ -20,7 +20,7 @@ Parameters:
     Description: 'The source GitHub repo name (without the username).'
   GitHubBranch:
     Type: String
-    Default: master
+    Default: main
     Description: 'The source GitHub branch.'
   GitHubPersonalAccessToken:
     Type: String
@@ -96,6 +96,7 @@ Resources:
         Image: aws/codebuild/standard:2.0
       Source:
         Type: CODEPIPELINE
+        BuildSpec: infra/buildspec.yml
 
   # deploy stack
   DeploymentApplication:
