@@ -211,8 +211,8 @@ Resources:
           packages: 
             yum:
               ruby: []
-              wget: []
-              unzip: []
+              #wget: []
+              #unzip: []
           files:
             /home/ec2-user/install: 
               source: !Sub "https://aws-codedeploy-${AWS::Region}.s3.amazonaws.com/latest/install"
