@@ -217,6 +217,7 @@ Resources:
             yum:
               ruby: []
               jq: []
+              wget: []
           files:
             /home/ec2-user/install:
               source: !Sub "https://aws-codedeploy-${AWS::Region}.s3.amazonaws.com/latest/install"
@@ -263,20 +264,20 @@ Resources:
 
             /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --region ${AWS::Region} --resource InstanceLaunchTemplate
 
-            export INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id`"
-            export LOGICAL_ID=`aws --region ${AWS::Region} ec2 describe-tags \ 
+            export INSTANCE_ID="`wget -q -O - http://169.254.169.254/latest/meta-data/instance-id"
+            export LOGICAL_ID=`aws --region ${AWS::Region} ec2 describe-tags \
               --filters "Name=resource-id,Values=${!INSTANCE_ID}" \
-                        "Name=key,Values=aws:cloudformation:logical-id" \
+              "Name=key,Values=aws:cloudformation:logical-id" \
               | jq -r ".Tags[0].Value"`
 
-            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --region ${AWS::Region} --resource ${!LOGICAL_ID}
+            /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --region ${AWS::Region --resource ${!LOGICAL_ID}
 
   # ec2 instance
-  Instance1:
+  Instance:
     Type: AWS::EC2::Instance
     CreationPolicy:
       ResourceSignal:
-        Timeout: PT5M
+        Timeout: PT15M
         Count: 1
     Properties:
       LaunchTemplate:
@@ -303,7 +304,7 @@ Resources:
 Outputs:
   InstanceEndpoint1:
     Description: The DNS name for the created instance
-    Value: !Sub "http://${Instance1.PublicDnsName}:8080"
+    Value: !Sub "http://${Instance.PublicDnsName}:8080"
     Export:
       Name: InstanceEndpoint1
 
