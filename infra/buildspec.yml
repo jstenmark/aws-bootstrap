@@ -18,5 +18,4 @@ artifacts:
     - server.js
     - package.json
     - 'node_modules/**/*'
-    - source: infra/appspec.yml
-      destination: appspec.yml
+    - appspec.yml
